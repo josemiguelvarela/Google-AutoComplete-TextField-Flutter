@@ -149,7 +149,6 @@ class _GooglePlaceAutoCompleteTextFieldState
       _cancelToken = CancelToken();
     }
 
-    print("urlll $apiURL");
     try {
       String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
 
@@ -160,6 +159,8 @@ class _GooglePlaceAutoCompleteTextFieldState
               "Access-Control-Allow-Origin": "*"
             })
           : null;
+      print("urlll $url");
+      print("optionsss $options");
       Response response = await _dio.get(url, options: options);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
