@@ -150,7 +150,8 @@ class _GooglePlaceAutoCompleteTextFieldState
     }
 
     try {
-      String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
+      //String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
+      String url = apiURL;
 
       /// Add the custom header to the options
       final options = kIsWeb
@@ -160,7 +161,7 @@ class _GooglePlaceAutoCompleteTextFieldState
             })
           : null;
       print("urlll $url");
-      print("optionsss $options");
+      print("optionsss ${options.toString()}");
       Response response = await _dio.get(url, options: options);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
@@ -271,7 +272,8 @@ class _GooglePlaceAutoCompleteTextFieldState
     var apiURL =
         "https://maps.googleapis.com/maps/api/place/details/json?placeid=${prediction.placeId}&key=${widget.googleAPIKey}";
 
-    String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
+    //String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
+    String url = apiURL;
 
     try {
       final options = kIsWeb
