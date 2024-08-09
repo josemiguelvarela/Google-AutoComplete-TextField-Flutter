@@ -150,14 +150,14 @@ class _GooglePlaceAutoCompleteTextFieldState
     }
 
     try {
-      //String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
-      String url = apiURL;
+      String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
 
       /// Add the custom header to the options
       final options = kIsWeb
           ? Options(headers: {
               "x-requested-with": "XMLHttpRequest",
-              "Access-Control-Allow-Origin": "*"
+              //"Access-Control-Allow-Origin": "*",
+              //"Access-Control-Request-Method": "GET"
             })
           : null;
       print("urlll $url");
@@ -272,14 +272,14 @@ class _GooglePlaceAutoCompleteTextFieldState
     var apiURL =
         "https://maps.googleapis.com/maps/api/place/details/json?placeid=${prediction.placeId}&key=${widget.googleAPIKey}";
 
-    //String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
-    String url = apiURL;
+    String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
 
     try {
       final options = kIsWeb
           ? Options(headers: {
               "x-requested-with": "XMLHttpRequest",
-              "Access-Control-Allow-Origin": "*"
+              //"Access-Control-Allow-Origin": "*",
+              //"Access-Control-Request-Method": "GET"
             })
           : null;
 
