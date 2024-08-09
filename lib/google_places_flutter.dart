@@ -54,7 +54,8 @@ class GooglePlaceAutoCompleteTextField extends StatefulWidget {
       this.containerHorizontalPadding,
       this.containerVerticalPadding,
       this.focusNode,
-      this.placeType,this.language='en'});
+      this.placeType,
+      this.language = 'en'});
 
   @override
   _GooglePlaceAutoCompleteTextFieldState createState() =>
@@ -148,12 +149,16 @@ class _GooglePlaceAutoCompleteTextFieldState
 
     print("urlll $apiURL");
     try {
-      String proxyURL = "https://cors-anywhere.herokuapp.com/";
-      String url = kIsWeb ? proxyURL + apiURL : apiURL;
+      //String proxyURL = "https://cors-anywhere.herokuapp.com/";
+      //String url = kIsWeb ? proxyURL + apiURL : apiURL;
+      String url = apiURL;
 
       /// Add the custom header to the options
       final options = kIsWeb
-          ? Options(headers: {"x-requested-with": "XMLHttpRequest"})
+          ? Options(headers: {
+              "x-requested-with": "XMLHttpRequest",
+              "Access-Control-Allow-Origin": "*"
+            })
           : null;
       Response response = await _dio.get(url);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
