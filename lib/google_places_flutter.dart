@@ -13,7 +13,8 @@ import 'package:rxdart/rxdart.dart';
 
 import 'DioErrorHandler.dart';
 
-const String corsProxyURL = "https://corsproxy.io/?";
+//const String corsProxyURL = "https://corsproxy.io/?";
+const String corsProxyURL = "https://cors-anywhere.herokuapp.com/";
 
 class GooglePlaceAutoCompleteTextField extends StatefulWidget {
   InputDecoration inputDecoration;
