@@ -154,16 +154,14 @@ class _GooglePlaceAutoCompleteTextFieldState
       String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
 
       /// Add the custom header to the options
-      final options = kIsWeb
+      /*final options = kIsWeb
           ? Options(headers: {
               "x-requested-with": "XMLHttpRequest",
-              //"Access-Control-Allow-Origin": "*",
-              //"Access-Control-Request-Method": "GET"
             })
-          : null;
+          : null;*/
       print("urlll $url");
-      print("optionsss ${options.toString()}");
-      Response response = await _dio.get(url, options: options);
+      //Response response = await _dio.get(url, options: options);
+      Response response = await _dio.get(url);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
       Map map = response.data;
@@ -276,15 +274,14 @@ class _GooglePlaceAutoCompleteTextFieldState
     String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
 
     try {
-      final options = kIsWeb
+      /*final options = kIsWeb
           ? Options(headers: {
               "x-requested-with": "XMLHttpRequest",
-              //"Access-Control-Allow-Origin": "*",
-              //"Access-Control-Request-Method": "GET"
             })
-          : null;
+          : null;*/
 
-      Response response = await Dio().get(url, options: options);
+      //Response response = await Dio().get(url, options: options);
+      Response response = await Dio().get(url);
 
       PlaceDetails placeDetails = PlaceDetails.fromJson(response.data);
 
