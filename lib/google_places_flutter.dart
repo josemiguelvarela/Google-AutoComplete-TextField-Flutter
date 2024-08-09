@@ -160,7 +160,7 @@ class _GooglePlaceAutoCompleteTextFieldState
               "Access-Control-Allow-Origin": "*"
             })
           : null;
-      Response response = await _dio.get(url);
+      Response response = await _dio.get(url, options: options);
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
       Map map = response.data;
@@ -270,9 +270,14 @@ class _GooglePlaceAutoCompleteTextFieldState
     var url =
         "https://maps.googleapis.com/maps/api/place/details/json?placeid=${prediction.placeId}&key=${widget.googleAPIKey}";
     try {
-      Response response = await _dio.get(
-        url,
-      );
+      final options = kIsWeb
+          ? Options(headers: {
+              "x-requested-with": "XMLHttpRequest",
+              "Access-Control-Allow-Origin": "*"
+            })
+          : null;
+
+      Response response = await Dio().get(url, options: options);
 
       PlaceDetails placeDetails = PlaceDetails.fromJson(response.data);
 
