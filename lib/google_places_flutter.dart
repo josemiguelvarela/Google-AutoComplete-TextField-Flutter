@@ -13,6 +13,8 @@ import 'package:rxdart/rxdart.dart';
 
 import 'DioErrorHandler.dart';
 
+const String corsProxyURL = "https://corsproxy.io/?";
+
 class GooglePlaceAutoCompleteTextField extends StatefulWidget {
   InputDecoration inputDecoration;
   ItemClick? itemClick;
@@ -149,9 +151,7 @@ class _GooglePlaceAutoCompleteTextFieldState
 
     print("urlll $apiURL");
     try {
-      //String proxyURL = "https://cors-anywhere.herokuapp.com/";
-      //String url = kIsWeb ? proxyURL + apiURL : apiURL;
-      String url = apiURL;
+      String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
 
       /// Add the custom header to the options
       final options = kIsWeb
@@ -267,8 +267,11 @@ class _GooglePlaceAutoCompleteTextFieldState
   Future<Response?> getPlaceDetailsFromPlaceId(Prediction prediction) async {
     //String key = GlobalConfiguration().getString('google_maps_key');
 
-    var url =
+    var apiURL =
         "https://maps.googleapis.com/maps/api/place/details/json?placeid=${prediction.placeId}&key=${widget.googleAPIKey}";
+
+    String url = kIsWeb ? corsProxyURL + apiURL : apiURL;
+
     try {
       final options = kIsWeb
           ? Options(headers: {
